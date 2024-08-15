@@ -1,6 +1,7 @@
 const btn = document.querySelector("#btn")
 const defaultColor = document.querySelector("#default-color");
 const randomizedColor = document.querySelector("#randomized")
+const darkenBox = document.querySelector("#darken")
 
 // Creating and appending large container
 const largeContainer = document.createElement("div");
@@ -18,7 +19,7 @@ btn.addEventListener(`click`, () => {
         numberOfBoxes = 100;
     }
     else if(numberOfBoxes < 1){
-        numberOfBoxes = 1;
+        numberOfBoxes = 2;
     }
     
     let boxLen = 800 / numberOfBoxes;
@@ -47,7 +48,9 @@ function createContainer(boxLen, numberOfBoxes) {
         container.setAttribute(`style`, `display: flex`)
         
         // Creating and appending 16 grid boxed to each container
+        
         for (let i = 0; i < numberOfBoxes; i++) {
+            let percentage = 0;
             const gridBox = document.createElement("div");
             gridBox.classList.add("grid-box");
             container.appendChild(gridBox);
@@ -59,26 +62,29 @@ function createContainer(boxLen, numberOfBoxes) {
             gridBox.addEventListener(`mouseover`, () => {
                 gridBox.style.backgroundColor = "burlywood";
             })
+
             gridBox.addEventListener(`mouseout`, () => {
+                // Choosing stylus color
                 if(defaultColor.checked){
                     gridBox.style.backgroundColor = "chocolate";
                 }
                 else if(randomizedColor.checked){
-                gridBox.style.backgroundColor = selectColor();
+                gridBox.style.backgroundColor = selectRandomColor();
+                }
+                else if(darkenBox.checked){
+                    gridBox.style.backgroundColor = `rgb(0 0 0 / ${percentage += 10}%)`
                 }
             })
         }
     }
 }
 
-function selectColor(){
+function selectRandomColor(){
     function randomNumber(){
         randomNum = Math.floor(Math.random() * 255);
         return randomNum;
     }
-
     let color = `rgb(${randomNumber()}, ${randomNumber()}, ${randomNumber()})`;
-    // let color = `chocolate`;
 
     return color;
 }
