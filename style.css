@@ -26,3 +26,14 @@ button {
 button:hover {
     background-color: #95a57b;
 }
+
+label {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: x-large;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
