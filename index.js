@@ -1,4 +1,6 @@
 const btn = document.querySelector("#btn")
+const defaultColor = document.querySelector("#default-color");
+const randomizedColor = document.querySelector("#randomized")
 
 // Creating and appending large container
 const largeContainer = document.createElement("div");
@@ -20,7 +22,7 @@ btn.addEventListener(`click`, () => {
     }
     
     let boxLen = 800 / numberOfBoxes;
-    
+
     createContainer(boxLen, numberOfBoxes);
 })
 
@@ -58,9 +60,27 @@ function createContainer(boxLen, numberOfBoxes) {
                 gridBox.style.backgroundColor = "burlywood";
             })
             gridBox.addEventListener(`mouseout`, () => {
-                gridBox.style.backgroundColor = "chocolate";
+                if(defaultColor.checked){
+                    gridBox.style.backgroundColor = "chocolate";
+                }
+                else if(randomizedColor.checked){
+                gridBox.style.backgroundColor = selectColor();
+                }
             })
         }
     }
 }
+
+function selectColor(){
+    function randomNumber(){
+        randomNum = Math.floor(Math.random() * 255);
+        return randomNum;
+    }
+
+    let color = `rgb(${randomNumber()}, ${randomNumber()}, ${randomNumber()})`;
+    // let color = `chocolate`;
+
+    return color;
+}
+
 
