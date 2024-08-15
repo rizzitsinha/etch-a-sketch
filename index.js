@@ -88,5 +88,3 @@ function selectRandomColor(){
 
     return color;
 }
-
-
