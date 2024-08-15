@@ -10,8 +10,7 @@ btn.addEventListener(`click`, () => {
 
     // Prompting user for grid size
     let numberOfBoxes = Number(window.prompt("How many boxes do you wish for? (max: 100)", 16));
-    let boxLen = 800 / numberOfBoxes;
-
+    
     // Limiting number of boxes to 100
     if(numberOfBoxes > 100){
         numberOfBoxes = 100;
@@ -19,7 +18,9 @@ btn.addEventListener(`click`, () => {
     else if(numberOfBoxes < 1){
         numberOfBoxes = 1;
     }
-
+    
+    let boxLen = 800 / numberOfBoxes;
+    
     createContainer(boxLen, numberOfBoxes);
 })
 
