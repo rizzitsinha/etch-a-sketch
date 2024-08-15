@@ -8,11 +8,17 @@ document.body.appendChild(largeContainer);
 // Event listener to create grid
 btn.addEventListener(`click`, () => {
 
-    let numberOfBoxes = Number(window.prompt("How many boxes do you wish for?", 16));
+    // Prompting user for grid size
+    let numberOfBoxes = Number(window.prompt("How many boxes do you wish for? (max: 100)", 16));
     let boxLen = 800 / numberOfBoxes;
 
-    console.log(numberOfBoxes);
-    console.log(boxLen)
+    // Limiting number of boxes to 100
+    if(numberOfBoxes > 100){
+        numberOfBoxes = 100;
+    }
+    else if(numberOfBoxes < 1){
+        numberOfBoxes = 1;
+    }
 
     createContainer(boxLen, numberOfBoxes);
 })
